@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "mongoose.h"
 
-static const char *s_http_addr = "http://0.0.0.0:8080"; 
+static const char *s_http_addr = "http://localhost:8080";
 
 
 static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {

@@ -1,11 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "mongoose.h"
 
 static const char *s_http_port = "8080";
 
-// Новая сигнатура обработчика
+// Обработчик событий
 static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
     if (ev == MG_EV_HTTP_MSG) {
         struct mg_http_message *hm = (struct mg_http_message *) ev_data;
@@ -28,11 +26,11 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
             // Обработка формы
             char name[50] = "", occasion[50] = "";
             
-            // Парсинг параметров
+            // Парсинг параметров формы
             mg_http_get_var(&hm->body, "name", name, sizeof(name));
             mg_http_get_var(&hm->body, "occasion", occasion, sizeof(occasion));
             
-            // Ответ с поздравлением
+            // Формирование ответа
             mg_http_reply(c, 200, "Content-Type: text/html\r\n",
                 "<!DOCTYPE html><html><head><title>Поздравление</title></head><body>"
                 "<h1>Поздравление для %s</h1>"
@@ -50,11 +48,11 @@ int main(void) {
     struct mg_mgr mgr;
     mg_mgr_init(&mgr);
     
-    // Создаем HTTP-сервер
+    // Создание HTTP-сервера
     mg_http_listen(&mgr, s_http_port, fn, NULL);
     
     printf("Server running on http://localhost:%s\n", s_http_port);
-    for (;;) mg_mgr_poll(&mgr, 1000);
+    while (true) mg_mgr_poll(&mgr, 1000);
     
     mg_mgr_free(&mgr);
     return 0;

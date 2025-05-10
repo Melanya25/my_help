@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -I. -Wall -Wextra
-SOURCES = src/main.c mongoose.c
+CFLAGS = -I./lib/mongoose -Wall -pthread
+SOURCES = src/main.c lib/mongoose/mongoose.c
 TARGET = server
 
 all: $(TARGET)

@@ -1,11 +1,12 @@
 CC = gcc
-CFLAGS = -I./mongoose -Wall -O2
-LDFLAGS = -L./mongoose -lmg
-SOURCES = main.c mongoose/mongoose.c
-OBJECTS = main.o mongoose/mongoose.o
-all: server
-server: $(OBJECTS)
-    $(CC) -o $@ $^ $(LDFLAGS)
-clean:
-    rm -f server *.o
+CFLAGS = -I. -Wall
+SOURCES = src/main.c src/input.c mongoose/mongoose.c
+OBJECTS = $(SOURCES:.c=.o)
 
+all: server
+
+server: $(OBJECTS)
+	$(CC) -o $@ $^ $(CFLAGS)
+
+clean:
+	rm -f server $(OBJECTS)

@@ -1,4 +1,7 @@
 my_help/  
+├──mongoose/      
+│   ├── mongoose.c
+│   └── mongoose.h
 ├── src/  
 │   ├── main.c             # Основной код сервера  
 │   ├── input.c            # Парсинг данных формы  

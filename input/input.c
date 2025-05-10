@@ -1,7 +1,7 @@
 #include "input.h"
 #include <string.h>
 
-// Простая функция для поиска и парсинга параметра
+
 int parse_form_param(const char *body, const char *param_name, char *output, size_t maxlen) {
     const char *p = body;
     size_t pname_len = strlen(param_name);
@@ -13,7 +13,7 @@ int parse_form_param(const char *body, const char *param_name, char *output, siz
             if (len >= maxlen) len = maxlen - 1;
             strncpy(output, p, len);
             output[len] = '\0';
-            // Декодируем URL
+           
             return url_decode(output, output, maxlen);
         }
         p = strchr(p, '&');
@@ -22,7 +22,7 @@ int parse_form_param(const char *body, const char *param_name, char *output, siz
     return 0; // не найдено
 }
 
-// Простая декодировка URL (замена %xx на символ)
+
 int url_decode(const char *src, char *dest, size_t maxlen) {
     size_t si = 0, di = 0;
     while (src[si] && di < maxlen -1) {

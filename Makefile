@@ -1,12 +1,12 @@
 CC = gcc
-CFLAGS = -I. -Wall
-SOURCES = src/main.c src/input.c mongoose/mongoose.c
-OBJECTS = $(SOURCES:.c=.o)
+CFLAGS = -I. -Wall -Wextra
+SOURCES = src/main.c mongoose.c
+TARGET = server
 
-all: server
+all: $(TARGET)
 
-server: $(OBJECTS)
-	$(CC) -o $@ $^ $(CFLAGS)
+$(TARGET): $(SOURCES)
+	$(CC) $(CFLAGS) -o $@ $^
 
 clean:
-	rm -f server $(OBJECTS)
+	rm -f $(TARGET)

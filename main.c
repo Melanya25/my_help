@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include "mongoose.h"
 
-static const char *s_http_addr = "http://0.0.0.0:8080";  // Полный URL для прослушивания
+static const char *s_http_addr = "http://0.0.0.0:8080"; 
 
-// Обработчик событий с правильной сигнатурой
+
 static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
     if (ev == MG_EV_HTTP_MSG) {
         struct mg_http_message *hm = (struct mg_http_message *) ev_data;
         
         if (mg_http_match_uri(hm, "/")) {
-            // Главная страница с формой
+            
             mg_http_reply(c, 200,
                 "Content-Type: text/html\r\n",
                 "<!DOCTYPE html><html><head><title>Конструктор</title></head><body>"
@@ -24,12 +24,12 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
                 "<button>Поздравить</button></form></body></html>");
         }
         else if (mg_http_match_uri(hm, "/submit")) {
-            // Обработка формы
+            
             char name[50] = "", occasion[50] = "";
             mg_http_get_var(&hm->body, "name", name, sizeof(name));
             mg_http_get_var(&hm->body, "occasion", occasion, sizeof(occasion));
             
-            // Ответ с поздравлением
+            
             mg_http_reply(c, 200,
                 "Content-Type: text/html\r\n",
                 "<!DOCTYPE html><html><head><title>Поздравление</title></head><body>"

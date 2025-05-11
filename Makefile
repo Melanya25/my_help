@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -I. -Wall -pthread
 SOURCES = src/main.c mongoose.c
-TARGET = server
+TARGET = greeting_server
 
 all: $(TARGET)
 
@@ -10,3 +10,6 @@ $(TARGET): $(SOURCES)
 
 clean:
 	rm -f $(TARGET) *.o
+
+run: all
+	./$(TARGET)

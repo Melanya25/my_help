@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Поздравление</title>
-    <link rel="stylesheet" href="/css/styles.css" />
+    <meta charset="UTF-8">
+    <title>Greeting for {{name}}</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Поздравление для {{name}}</h1>
-    <p>Поздравляю тебя с {{occasion}}!</p>
-    <p>Желаю тебе всего самого лучшего!</p>
-    <a href="/">Создать новое поздравление</a>
+    <div class="greeting-card">
+        <h1>Dear {{name}},</h1>
+        <p class="congrat-message">Happy {{occasion}}!</p>
+        <p>Wishing you happiness and success!</p>
+    </div>
+    
+    <div class="actions">
+        <a href="/" class="btn">Create Another</a>
+        <button onclick="window.print()" class="btn">Print This Card</button>
+    </div>
 </body>
 </html>
